@@ -12,6 +12,8 @@ We apply point-light walkers to operationalize human motion. These walkers origi
 
 ### Experimental scene
 The experimental world spans over 60 m scene depths. We placed a visible ground at eye height (1.60 m). Its appearance could either be structured (gravel) or unstructured (stripes in the motion direction). The gravel ground provides independent optic flow, while the stripes ground neither conveys any structure nor optic flow. 
+<img width="664" alt="Bildschirmfoto 2022-08-02 um 12 32 11" src="https://user-images.githubusercontent.com/69513270/182355366-0e09f7b7-b11b-4c51-89cb-ccfa66a9b493.png">
+
 
 ### Articulation speed
 In real-life scenarios, humans differ in their translation, and thus, articulation speed (Masselink & Lappe, 2015). To keep the scene close to reality, we manipulate the articulation and translation speed of the walkers. The original motion-tracking data have a matching translation speed of 0.013 (0.6m/s.). By linear interpolation (see Matlab Skript extrapolatewalker.m), we create two more motion files with either 0.8 (slower) or 1.2 times (faster) the original articulation speed. Translation speed is adjusted accordingly. The three different articulation and translation speeds are divided equally among the 30 point-light walkers. The average walker speed remains constant at 0.013 at any trial. Randomized position in depth combined with a randomized starting position in the gait cycle let the crowd appear naturally.
