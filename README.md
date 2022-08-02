@@ -1,5 +1,21 @@
-# travel-distance-
-# Distance perception
+# Distance perception in the presence of biological motion
+These scripts simulate an observer's forwarding self-motion through a crowd of point-light walkers. In each trial, self-motion simulation has a different velocity and traveled distance. Point-light walkers ressemble a crowd of humans that either approaches, leaves, or remains static. Participants' task is to carefully watch the simulation, and estimate the traveled distance after each trial by placing a walker on a line to the approached distance in the world. 
+
+## Technical requirements and set-up
+These scripts are optimized for MatLab 2021b with Psychtoolbox (http://psychtoolbox.org/download.html) and OpenGL add-on libraries from the Psychtoolbox. So what needs to be installed on you computer are Matlab and Psychtoolbox. 
+
+## Set-up
+Download all the files and add them to your Matlab folder. Within your Matlab folder, create a subfolder names "functions". Move the script "geFrustum" to this subfolder. 
+
+## Explanation of the scripts
+- github_travel_distance_0_16.m: This is the main script creating the scene. 
+- getFrustum.m: this script generates frustum data. The main script uses this script to do some calculations. No need to adapt this script.
+- extrapolatewalkerdata.m: we extrapolated walker motion data (sample_walker3) to generate slightly slower and faster articulating walkers. The matching translation speed is generated in the main script. You do not need to do anything with that script. If you want to, you can extrapolate your own walker motion speeds with that script. The main script does not use this script.
+- sample_walker3: motion data for point_light walker with normal speed
+- sample_walker_0.8: motion data for point_light walker with slower speed
+- sample_walker_1.2: motion data for point_light walker with faster speed
+- stripes.rgb.tiff: ground type stripes
+- gravel.rgb.tiff: ground type gravel
 
 
 
@@ -15,7 +31,7 @@ The experimental world spans over 60 m scene depths. We placed a visible ground 
 <img width="664" alt="Bildschirmfoto 2022-08-02 um 12 32 11" src="https://user-images.githubusercontent.com/69513270/182355366-0e09f7b7-b11b-4c51-89cb-ccfa66a9b493.png">
 
 ### Articulation speed
-In real-life scenarios, humans differ in their translation, and thus, articulation speed (Masselink & Lappe, 2015). To keep the scene close to reality, we manipulate the articulation and translation speed of the walkers. The original motion-tracking data have a matching translation speed of 0.013 (0.6m/s.). By linear interpolation (see Matlab Skript extrapolatewalker.m), we create two more motion files with either 0.8 (slower) or 1.2 times (faster) the original articulation speed. Translation speed is adjusted accordingly. The three different articulation and translation speeds are divided equally among the 30 point-light walkers. The average walker speed remains constant at 0.013 at any trial. Randomized position in depth combined with a randomized starting position in the gait cycle let the crowd appear naturally.
+In real-life scenarios, humans differ in their translation, and thus, articulation speed (Masselink & Lappe, 2015). To keep the scene close to reality, we manipulate the articulation and translation speed of the walkers. The original motion-tracking data have a matching translation speed of 0.013 (0.6m/s.). By linear interpolation (see Matlab Skript extrapolatewalkerdata.m), we create two more motion files with either 0.8 (slower) or 1.2 times (faster) the original articulation speed. Translation speed is adjusted accordingly. The three different articulation and translation speeds are divided equally among the 30 point-light walkers. The average walker speed remains constant at 0.013 at any trial. Randomized position in depth combined with a randomized starting position in the gait cycle let the crowd appear naturally.
 
 ### Walker position
 The walkers' positions are uniformly sampled in the frustum. We limit their position in depth to 26 m maximum so that walkers appear at an adequate sight. This limited in-depth position is beneficial for leaving crowds combined with slow observer speeds. When walkers disappear from the frustum, we replace them at 23 m in depth and correct for the movement speed of the observer.
