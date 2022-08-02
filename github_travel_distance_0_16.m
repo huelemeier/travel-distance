@@ -12,7 +12,7 @@ practice = 1;%input('Practice run [1] Experimental run [0] '); %input whether th
 
 
 %% Nothing more to adjust here about the walker type, the presentation of a ground, and the drawing of the true traveled distance.
-walker_type = 1;%input walker type [0 = scrambled, walker] [1 = normal walker];
+walker_type = 1; % [1 = normal walker];
 observer_translating = 1;%input('Observer translating [1] or static [0]? ');
 gravel = [1];%Does a ground generally appear? 1 = yes, 0 = no. 
 eye_height = 1.6;
@@ -294,10 +294,6 @@ for trial = 1:length(trials)
         
     %% set walker stuff
 
-    if walker_type == 0
-        walker_array = genscramwalker(walker_array,16);
-    end
-
     clear xi
     %randomly select starting phase
     numorder=(1:16:length(walker_array));
@@ -507,15 +503,6 @@ for trial = 1:length(trials)
             if translating
                 translate_walker(walker)=translate_walker(walker) + translation_speed(walker);
             end
-
-            %inverted walkers are rotated. Facing direction needs to be
-            %inverted. Otherwise, translating walkers appear as moon
-            %walkers
-%             if walker_type == 2
-%                 glRotatef(180,0,0,1)
-%                 glTranslatef(0,-1.4,0)
-%             end
-
 
 
             % adapt point size to the walker's position in depth
