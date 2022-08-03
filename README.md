@@ -18,6 +18,9 @@ Download all the files and add them to your Matlab folder. Within your Matlab fo
 - gravel.rgb.tiff: ground type gravel
 
 
+## Run the script
+Open the script in Matlab and click on 'run'. Matlab automatically requires your input in the command line, and subsequently asks questions. Enter the participant id and further information subsequently. When done, Psychtoolbox automatically opens a window and runs the script in that window. You will see the stimulus presentation. After each presentation, you are required to estimate your traveled distance by moving the mouse along the vertical axis. Confirm your answer by pressing the left mouse buttom. Subsequently, the next trial starts. The script finishes when all trials are done.
+
 
 ## Technical information about the scene
 
