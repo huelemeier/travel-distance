@@ -4,10 +4,10 @@ addpath('functions')
 
 rng('shuffle');
 
-%% Please adjust the following lines per VP and block
-ID = 99; % input('Enter subject ID '); %Input subject ID, this will also be the file name of the output
-session = 3; %input('Enter session number '); %Input session number, this will also be the file name of the output
-practice = 1;%input('Practice run [1] Experimental run [0] '); %input whether this is a practice run or not
+
+ID = input('Enter subject ID '); %Input subject ID, this will also be the file name of the output
+session = input('Enter session number '); %Input session number, this will also be the file name of the output
+practice = input('Practice run [1] Experimental run [0] '); %input whether this is a practice run or not
 
 
 
