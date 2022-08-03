@@ -1,5 +1,8 @@
 # Distance perception in the presence of biological motion
 These scripts simulate an observer's forwarding self-motion through a crowd of point-light walkers. In each trial, self-motion simulation has a different velocity and traveled distance. Point-light walkers ressemble a crowd of humans that either approaches, leaves, or remains static. Participants' task is to carefully watch the simulation, and estimate the traveled distance after each trial by placing a walker on a line to the approached distance in the world. 
+The following video shows one trial as example:
+
+https://user-images.githubusercontent.com/69513270/182567281-a54efc79-a7d4-403b-8d10-4421c04e88fb.mp4
 
 ## Technical requirements and set-up
 These scripts are optimized for MatLab 2021b with Psychtoolbox (http://psychtoolbox.org/download.html) and OpenGL add-on libraries from the Psychtoolbox. So what needs to be installed on you computer are Matlab and Psychtoolbox. 
