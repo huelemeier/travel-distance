@@ -28,8 +28,16 @@ Open the script in Matlab and click on 'run'. Matlab automatically requires your
 ## Technical information about the scene
 
 ### Point-light walkers
-We apply point-light walkers to operationalize human motion. These walkers originated from the motion-tracking data of a single walking human (de Lussanet et al., 2008). Each walker consists of 12 points corresponding to the ankles of a human body (knee, hip, hands, elbow, and shoulder joints). We create a crowd of 30 colored walkers. Each walker starts individually with a random selection starting position in the gait cycle. The group appears collectively as static, approaching or leaving the observer. Because point-light walkers are ambiguous in their facing direction when static, we only show static walkers facing the observer (Vanrie et al., 2004). 
+We apply point-light walkers to operationalize human motion. These walkers originated from the motion-tracking data of a single walking human (de Lussanet et al., 2008). Each walker consists of 12 points corresponding to the ankles of a human body (knee, hip, hands, elbow, and shoulder joints). 
+
+<img width="1920" alt="background point-light walker" src="https://user-images.githubusercontent.com/69513270/182680560-db827f69-a77c-470a-97c1-41b14cfd2a2b.png">
+
+
+
+
+For the experiment, we create a crowd of 30 colored walkers. Each walker starts individually with a random selection starting position in the gait cycle. The group appears collectively as static, approaching or leaving the observer. Because point-light walkers are ambiguous in their facing direction when static, we only show static walkers facing the observer (Vanrie et al., 2004). 
 ![scene with stripes ground](https://user-images.githubusercontent.com/69513270/182351822-dc74d917-510e-4dd5-95c3-7c366598492c.png) ![scene with gravel ground](https://user-images.githubusercontent.com/69513270/182353091-25c86c42-f012-42db-bd85-f7a1c1abf1a3.png)
+
 
 
 ### Experimental scene
