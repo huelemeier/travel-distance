@@ -36,17 +36,8 @@ We apply point-light walkers to operationalize human motion. These walkers origi
 
 <img width="1920" alt="background point-light walker" src="https://user-images.githubusercontent.com/69513270/182680560-db827f69-a77c-470a-97c1-41b14cfd2a2b.png">
 
-
-
-
 For the experiment, we create a crowd of 30 colored walkers. Each walker starts individually with a random selection starting position in the gait cycle. The group appears collectively as static, approaching or leaving the observer. Because point-light walkers are ambiguous in their facing direction when static, we only show static walkers facing the observer (Vanrie et al., 2004). 
 ![scene with stripes ground](https://user-images.githubusercontent.com/69513270/182351822-dc74d917-510e-4dd5-95c3-7c366598492c.png) ![scene with gravel ground](https://user-images.githubusercontent.com/69513270/182353091-25c86c42-f012-42db-bd85-f7a1c1abf1a3.png)
-
-
-
-### Experimental scene
-The experimental world spans over 60 m scene depths. We placed a visible ground at eye height (1.60 m). Its appearance could either be structured (gravel) or unstructured (stripes in the motion direction). The gravel ground provides independent optic flow, while the stripes ground neither conveys any structure nor optic flow. 
-<img width="664" alt="Bildschirmfoto 2022-08-02 um 12 32 11" src="https://user-images.githubusercontent.com/69513270/182355366-0e09f7b7-b11b-4c51-89cb-ccfa66a9b493.png">
 
 ### Articulation speed
 In real-life scenarios, humans differ in their translation, and thus, articulation speed (Masselink & Lappe, 2015). To keep the scene close to reality, we manipulate the articulation and translation speed of the walkers. The original motion-tracking data have a matching translation speed of 0.013 (0.6m/s.). By linear interpolation (see Matlab Skript extrapolatewalkerdata.m), we create two more motion files with either 0.8 (slower) or 1.2 times (faster) the original articulation speed. Translation speed is adjusted accordingly. The three different articulation and translation speeds are divided equally among the 30 point-light walkers. The average walker speed remains constant at 0.013 at any trial. Randomized position in depth combined with a randomized starting position in the gait cycle let the crowd appear naturally.
@@ -54,6 +45,10 @@ In real-life scenarios, humans differ in their translation, and thus, articulati
 ### Walker position
 The walkers' positions are uniformly sampled in the frustum. We limit their position in depth to 26 m maximum so that walkers appear at an adequate sight. This limited in-depth position is beneficial for leaving crowds combined with slow observer speeds. When walkers disappear from the frustum, we replace them at 23 m in depth and correct for the movement speed of the observer.
 To avoid collisions with static or approaching walkers, we place the walkers 1.5 m each left and right past the observer. Such a replacement creates a kind of tunnel to form through the crowd. Shortly before the end of the trial (maximum 600 frames left), walkers disappearing from the frustum can be placed within the tunnel without any risk of collision. This setting does not reveal any information about travel distance or travel velocity. But it makes the scene look realistic. Leaving crowds are located without such replacements within the frustum. 
+
+### Experimental scene
+The experimental world spans over 60 m scene depths. We placed a visible ground at eye height (1.60 m). Its appearance could either be structured (gravel) or unstructured (stripes in the motion direction). The gravel ground provides independent optic flow, while the stripes ground neither conveys any structure nor optic flow. 
+<img width="664" alt="Bildschirmfoto 2022-08-02 um 12 32 11" src="https://user-images.githubusercontent.com/69513270/182355366-0e09f7b7-b11b-4c51-89cb-ccfa66a9b493.png">
 
 ### Self-motion simulation
 We simulate observers' forwarding self-motion towards a crowd of point-light walkers. Travel distances are chosen by Lappe et al. (2007): 4.00 m, 5.66 m, 8.00 m, 11.31 m, 16.00 m, and 22.63 m. All distances are traveled at 0.013, equal to the average translation speed of the crowd. In addition, short distances (4.00 m, 5.66 m, 8.00 m) are simulated more slowly at 0.0104, which is half the crowd's average speed. For long distances (11.31 m, 16.00 m, 22.63 m), we choose a simulation speed of 0.0154, or 1.5 faster than the crowd. 
@@ -64,8 +59,5 @@ We combine three walker conditions (approaching vs. leaving vs. static), two gro
 ### Distance estimation // Procedure
 Participants' task is to reproduce the traveled distance by placing a point-light walker on a blue line from a red starting line (at 2.624 m) as far as they went before ('adjust-to-target'-paradigm; Lappe & Frenz, 2009). Moving the walker in-depth immediately rescales it according to its position in depth. This rescaling should help participants receive a better depth impression, thus, increasing estimation accuracy. 
 ![distance estimation with walker on the estimation line](https://user-images.githubusercontent.com/69513270/182351519-199879d5-9e5f-4dc4-bfdb-97191539c257.png)
-
-
-
 
 Depending on travel distance and velocity, a trial lasts between 5 and 28 seconds. To avoid fatigue effects we divide the experiment into four sessions on two days. So when entering the session number, make sure to choose a number between 1 and 4. Trials are blocked according to the ground type (gravel vs stripes). We assigned participants alternatingly to start their session with either the gravel or stripes ground type. 
