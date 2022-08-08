@@ -6,7 +6,7 @@ rng('shuffle');
 
 
 ID = input('Enter subject ID '); %Input subject ID, this will also be the file name of the output
-session = input('Enter session number '); %Input session number, this will also be the file name of the output
+session = input('Enter session number from 1 to 4 '); %Input session number, this will also be the file name of the output
 practice = input('Practice run [1] Experimental run [0] '); %input whether this is a practice run or not
 
 
