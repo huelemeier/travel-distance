@@ -12,11 +12,11 @@ practice = input('Practice run [1] Experimental run [0] '); %input whether this 
 
 
 %% Nothing more to adjust here about the walker type, the presentation of a ground, and the drawing of the true traveled distance.
+show_true_distance = false; %show true traveled distance. 
 walker_type = 1; % [1 = normal walker];
 observer_translating = 1;%input('Observer translating [1] or static [0]? ');
 gravel = [1];%Does a ground generally appear? 1 = yes, 0 = no. 
 eye_height = 1.6;
-show_true_distance = false; %show true traveled distance. 
 
 
 travel_distance = [4, 5.66, 8, 11.31, 16, 22.63]; %in m 4, 5.66, 8, 11.31, 16, 22.63
