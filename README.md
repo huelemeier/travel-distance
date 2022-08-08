@@ -24,6 +24,10 @@ Download all the files and add them to your Matlab folder. Within your Matlab fo
 ## Run the script
 Open the script in Matlab and click on 'run'. Matlab automatically requires your input in the command line, and subsequently asks questions. Enter the participant id and further information subsequently. When done, Psychtoolbox automatically opens a window and runs the script in that window. You will see the stimulus presentation. After each presentation, you are required to estimate your traveled distance by moving the mouse along the vertical axis. Confirm your answer by pressing the left mouse buttom. Subsequently, the next trial starts. The script finishes when all trials are done.
 
+You want to see the true traveled distance? Just change show_true_distance (line 15) in the script from false to true:
+```matlab
+show_true_distance = true; %show true traveled distance. 
+```
 
 ## Technical information about the scene
 
@@ -64,4 +68,4 @@ Participants' task is to reproduce the traveled distance by placing a point-ligh
 
 
 
-Depending on travel distance and velocity, a trial lasts between 5 and 28 seconds. To avoid fatigue effects we divide the experiment into two sessions on two days. Trials are blocked according to the ground type (gravel vs stripes). We assigned participants alternatingly to start their session with either the gravel or stripes ground type. 
+Depending on travel distance and velocity, a trial lasts between 5 and 28 seconds. To avoid fatigue effects we divide the experiment into four sessions on two days. So when entering the session number, make sure to choose a number between 1 and 4. Trials are blocked according to the ground type (gravel vs stripes). We assigned participants alternatingly to start their session with either the gravel or stripes ground type. 
