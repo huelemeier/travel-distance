@@ -1,4 +1,5 @@
 # Distance perception in the presence of biological motion
+This repository contain scripts to run the experiment and to do the follow-up analyses.
 These scripts simulate an observer's forwarding self-motion through a crowd of point-light walkers. In each trial, self-motion simulation has a different velocity and traveled distance. Point-light walkers ressemble a crowd of humans that either approaches, leaves, or remains static. Participants' task is to carefully watch the simulation, and estimate the traveled distance after each trial by placing a walker on a line to the approached distance in the world. 
 The following video shows one trial as example:
 
@@ -19,8 +20,9 @@ Download all the files and add them to your Matlab folder. Within your Matlab fo
 - sample_walker_1.2: motion data for point_light walker with faster speed
 - stripes.rgb.tiff: ground type stripes
 - gravel.rgb.tiff: ground type gravel
+- leaky fit.py: Python script to model the data according to the leaky path fit by Lappe et al. (2007)
 
-
+# Stimulus script
 ## Run the script
 Open the script in Matlab and click on 'run'. Matlab automatically requires your input in the command line, and subsequently asks questions. Enter the participant id and further information subsequently. When done, Psychtoolbox automatically opens a window and runs the script in that window. You will see the stimulus presentation. After each presentation, you are required to estimate your traveled distance by moving the mouse along the vertical axis. Confirm your answer by pressing the left mouse buttom. Subsequently, the next trial starts. The script finishes when all trials are done.
 
@@ -61,3 +63,14 @@ Participants' task is to reproduce the traveled distance by placing a point-ligh
 ![distance estimation with walker on the estimation line](https://user-images.githubusercontent.com/69513270/182351519-199879d5-9e5f-4dc4-bfdb-97191539c257.png)
 
 Depending on travel distance and velocity, a trial lasts between 5 and 28 seconds. To avoid fatigue effects we divide the experiment into four sessions on two days. So when entering the session number, make sure to choose a number between 1 and 4. Trials are blocked according to the ground type (gravel vs stripes). We assigned participants alternatingly to start their session with either the gravel or stripes ground type. 
+
+
+
+# Analysis
+## Technical Set-up
+The analysis includes descriptive and statistical analysis in R, and computational modeling in Python.
+
+
+## Leaky path fit
+According to the model (Lappe et al., 2007), two parameters influence the instantaneous change of distance: the leak factor α and the gain factor k. The leak rate descends, whereas the gain factor increases the integrated distance value over the length of motion. In the present way to ask participants to gauge their traveled distance ("adjust-to-target"), the gain factor k gradually increments the distance from the origin. The leakage increases proportionally to the current distance from the origin by the leak rate α. Hence, longer distances lead to more decrease in the current distance from the origin such that the extent of underestimation increases.
+The python script now fits the model to the data and calculates α and k. 
