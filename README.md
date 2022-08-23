@@ -6,10 +6,10 @@ The following video shows one trial as example:
 https://user-images.githubusercontent.com/69513270/182567281-a54efc79-a7d4-403b-8d10-4421c04e88fb.mp4
 
 ## Technical requirements and set-up
-These scripts are optimized for MatLab 2021b with Psychtoolbox (http://psychtoolbox.org/download.html) and OpenGL add-on libraries from the Psychtoolbox. So what needs to be installed on you computer are Matlab and Psychtoolbox. 
+These scripts are optimized for MatLab 2021b with Psychtoolbox (http://psychtoolbox.org/download.html) and OpenGL add-on libraries from the Psychtoolbox. So what needs to be installed on you computer are Matlab and Psychtoolbox. If you want to run the analyses for your data, please install R with RStudio and Python with Spyder.
 
 ## Set-up
-Download all the files and add them to your Matlab folder. Within your Matlab folder, create a subfolder names "functions". Move the script "geFrustum" to this subfolder. 
+Download all the files and add them to your Matlab folder. Within your Matlab folder, create a subfolder names "functions". Move the script "geFrustum" to this subfolder. Add the Python and R files to your respective folder. 
 
 ## Explanation of the scripts
 - github_travel_distance_0_16.m: This is the main script creating the scene. 
@@ -67,9 +67,7 @@ Depending on travel distance and velocity, a trial lasts between 5 and 28 second
 
 
 # Analysis
-## Technical Set-up
 The analysis includes descriptive and statistical analysis in R, and computational modeling in Python.
-
 
 ## Leaky path fit
 According to the model (Lappe et al., 2007), two parameters influence the instantaneous change of distance: the leak factor α and the gain factor k. The leak rate descends, whereas the gain factor increases the integrated distance value over the length of motion. In the present way to ask participants to gauge their traveled distance ("adjust-to-target"), the gain factor k gradually increments the distance from the origin. The leakage increases proportionally to the current distance from the origin by the leak rate α. Hence, longer distances lead to more decrease in the current distance from the origin such that the extent of underestimation increases.
