@@ -71,5 +71,5 @@ The analysis includes descriptive and statistical analysis in R, and computation
 
 ## Leaky path fit
 According to the model (Lappe et al., 2007), two parameters influence the instantaneous change of distance: the leak factor α and the gain factor k. The leak rate descends, whereas the gain factor increases the integrated distance value over the length of motion. In the present way to ask participants to gauge their traveled distance ("adjust-to-target"), the gain factor k gradually increments the distance from the origin. The leakage increases proportionally to the current distance from the origin by the leak rate α. Hence, longer distances lead to more decrease in the current distance from the origin such that the extent of underestimation increases.
-The python script now fits the model to the data and calculates α and k. Further, the script creates plot with raw data and their respective leaky model fit. The figure below shows some data as example
-![example plot - data described by leaky fit](https://user-images.githubusercontent.com/69513270/188610759-6bdb3f01-59df-48b2-a8f8-22590ea9aaa2.jpg)
+The python script now fits the model to the data and calculates α and k. Further, the script creates plot with raw data and their respective leaky model fit. The figure below shows some data as example:
+![example plot - data described by leaky fit](https://user-images.githubusercontent.com/69513270/188611382-b3e1c758-b626-4919-a0b4-5524e1dc0dc0.jpg)
