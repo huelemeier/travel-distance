@@ -60,6 +60,7 @@ a, k = popt
 x_line = np.arange(min(x), max(x))
 y_line = leaky(x_line, a, k) # calculate the output for the range
 
+plt.style.use('ggplot')
 plt.plot(x_line, y_line, color = '#D9345D')
 plt.suptitle("raw data described by leaky fit")
  
@@ -96,7 +97,8 @@ for j in list(set(data["combination"])): # combination
  
           fig = plt.figure()
           ax = fig.gca()
-
+        
+          plt.style.use('ggplot')
           plt.scatter(x, y, 6, alpha = 0.5, color = '#2A64AE') # plot raw data
           plt.plot(x_line, y_line, color = '#D9345D') # plot leaky fit
          
@@ -140,7 +142,7 @@ for i in list(set(data["id"])) : #id
           fig = plt.figure()
           ax = fig.gca()
 
-            
+          plt.style.use('ggplot')
           plt.scatter(x, y, alpha = 0.8, color = '#2A64AE') # plot raw data
 
           plt.plot(x_line, y_line, color = '#D9345D')
