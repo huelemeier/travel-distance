@@ -113,49 +113,65 @@ for j in list(set(data["combination"])): # combination
             
             
 # leaky Model per participant and stimulus combination walker x ground
-ar = [] # store individual leaky fit parameters in separate matrix
-# loop to create fit and plots
-for i in list(set(data["id"])) : #id
-    for j in list(set(data["combination"])): # combination
-      for l in list(set(data["ground"])): # ground
-   
-          def leaky(x, aa, kk):
-              return kk/aa * (1 - np.exp(-aa*x))
-          temp = data.loc[(data["id"] == i) & (data["combination"] == j) & (data["ground"] == l)]
-          y = temp["estimateddistance"]
-          x = temp["traveldistance"]
 
-          #- model fit:
-          popt, _ = curve_fit(leaky, x, y, bounds=[0, np.inf])
-          print(i, j, l,  "aa = {}, kk = {}".format(popt[0], popt[1]))
-          ar.append(i)
-          ar.append(j)           
-          ar.append(l)
-          ar.append(popt[0])
-          ar.append(popt[1])
+ar = [] # create data frame to store a and k per participant
+i_j = 0 # set index on 0
+i_l = 0 # set index on 0
+plt.clf()
+pdf = matplotlib.backends.backend_pdf.PdfPages("per participant leaky fit and raw data.pdf") # safe the plots in one pdf-file.
+
+for i in list(set(data["id"])):  # id
+    fig, ax = plt.subplots(2, 3, figsize = (10,5), sharex = True, sharey=True)
+
+    for j in list(set(data["combination"])):  # combination
+        for l in list(set(data["ground"])):  # ground
+
+                def leaky(x, aa, kk):
+                    return kk/aa * (1 - np.exp(-aa*x))
+                temp = data.loc[(data["id"] == i) & (data["combination"] == j) & (data["ground"] == l)]
+           
+                y = temp["estimateddistance"]
+                x = temp["traveldistance"]
             
-          #- Plotting:
-          a, k = popt
+                #- model fit:
+                popt, _ = curve_fit(leaky, x, y, bounds=[0, np.inf])
+                print(i, j, l,  "aa = {}, kk = {}".format(popt[0], popt[1]))
+                ar.append(i)
+                ar.append(j)
+                ar.append(l)
+                ar.append(popt[0])
+                ar.append(popt[1])
+        
+                #- Plotting:
+                a, k = popt
+
+                x_line = np.arange(min(x), max(x))
+                y_line = leaky(x_line, a, k) # calculate the output for the range
             
-          x_line = np.arange(min(x), max(x))
-          y_line = leaky(x_line, a, k) # calculate the output for the range
+                ax[i_l, i_j].scatter(x, y, 6, alpha = 0.5, color = '#2A64AE') # raw data
+                ax[i_l, i_j].plot(x_line, y_line, color = '#D9345D')
 
-          fig = plt.figure()
-          ax = fig.gca()
+                plt.style.use('ggplot')
 
-          plt.style.use('ggplot')
-          plt.scatter(x, y, alpha = 0.8, color = '#2A64AE') # plot raw data
+                plt.suptitle("raw data described by leaky fit")
+                ax[i_l, i_j].set_title('id {} '.format(i) + 'condition {} '.format(j) + 'ground {} '.format(l))
+        
+                ax[1,0].set_xlabel("traveled distance")
+                ax[0,0].set_ylabel("estimated distance")
+                ax[i_l, i_j].set_xticks(list(set(x)))
+ 
+                i_l += 1
+        i_j += 1
+        i_l=0
+ 
+    plt.tight_layout()   
+    figs = list(map(plt.figure, plt.get_fignums()))
+    i_j = 0
+    i_l = 0 
+    pdf.savefig()
+#    plt.show()
+pdf.close()        
 
-          plt.plot(x_line, y_line, color = '#D9345D')
-          plt.suptitle("raw data described by leaky fit")
-
-          ax.set_title('participant {} '.format(i) + 'condition {} '.format(j) + 'ground {} '.format(l))
-            
-          plt.xlabel("traveled distance")
-          plt.ylabel("estimated distance")
-          ax.set_xticks(list(set(x)))
-
-          plt.rcParams['axes.facecolor'] = '#F9F9F9'
         
 # format new data frame with calcualted fits per participant:                  
 x = ar
