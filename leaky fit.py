@@ -59,7 +59,8 @@ print("aa = {}, kk = {}".format(popt[0], popt[1])) # report parameters alpha and
 a, k = popt
 x_line = np.arange(min(x), max(x))
 y_line = leaky(x_line, a, k) # calculate the output for the range
-
+fig = plt.figure()
+ax = fig.gca()
 plt.style.use('ggplot')
 plt.plot(x_line, y_line, color = '#D9345D')
 plt.suptitle("raw data described by leaky fit")
