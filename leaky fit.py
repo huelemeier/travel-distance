@@ -45,23 +45,39 @@ data = dforiginal[dforiginal["estimateddistance"] > 0.9]
 
 
 
-#--- leaky Model
+#--- leaky Model with standard deviation
 
 def leaky(x, aa, kk):
     return kk/aa * (1 - np.exp(-aa*x))
+
+def uncertainty(x, aa, kk, s_a, s_k): # Formel Simplification aus: https://en.wikipedia.org/wiki/Propagation_of_uncertainty 
+    u_k =  1/aa * (1 - np.exp(-aa*x)) # Ableitung nach k
+    u_a = kk/aa**2 * (np.exp(-aa*x)-1) + kk*x/aa * np.exp(-aa*x) # Ableitung nach alpha
+    s_total = np.sqrt((u_k*s_k)**2 + (u_a*s_a)**2)
+    return s_total
+
+
+
 y = data["estimateddistance"]
 x = data["traveldistance"]
 
-popt,_ = curve_fit(leaky, x, y, bounds = [0, np.inf]) # calculate fit
-print("aa = {}, kk = {}".format(popt[0], popt[1])) # report parameters alpha and k
+popt, pcov = curve_fit(leaky, x, y, bounds=[0, np.inf])
+print("aa = {}, kk = {}".format(popt[0], popt[1]))
+perr = np.sqrt(np.diag(pcov)) # compute one standard deviation errors on the parameters perr[0] ist von alpha, perr[1] von k
+
 
 #- Plotting:
 a, k = popt
 x_line = np.arange(min(x), max(x))
 y_line = leaky(x_line, a, k) # calculate the output for the range
+s_line = uncertainty(x_line, a, k, perr[0], perr[1]) # Für alpha und k die Werte aus der pcov einsetzen
+
 fig = plt.figure()
 ax = fig.gca()
 plt.style.use('ggplot')
+
+plt.plot(x_line, y_line-s_line, color = '#E38B90')
+plt.plot(x_line, y_line+s_line, color = '#E38B90')
 plt.plot(x_line, y_line, color = '#D9345D')
 plt.suptitle("raw data described by leaky fit")
  
