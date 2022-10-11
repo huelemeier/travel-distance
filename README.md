@@ -84,7 +84,6 @@ The python script now fits the model to the data and calculates α and k. Furthe
 
 ## Descriptives analysis
 Descriptive analysis of the distance gauges includes descriptive values (mean, median and standard deviation), several data checks, and plots. 
-![natural locomotion mean sd distance estimation eine Geschwindigkeit](https://user-images.githubusercontent.com/69513270/195040117-e615ebdf-cb20-4ab1-ae5e-435731f48836.jpg)
 
 
 
