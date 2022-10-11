@@ -21,6 +21,8 @@ Download all the files and add them to your Matlab folder. Within your Matlab fo
 - stripes.rgb.tiff: ground type stripes
 - gravel.rgb.tiff: ground type gravel
 - leaky fit.py: Python script to model the data according to the leaky path fit by Lappe et al. (2007)
+- descriptive analysis distance estimates.R: R script to run descriptive analysis of distance estimates and to create plots
+- inferential analysis leaky.R: R script to analyse and plot the leaky model parameters from the leaky fit.py sript. 
 
 # Stimulus script
 ## Run the script
@@ -72,7 +74,28 @@ The analysis includes descriptive and inferential analysis in R, and computation
 ## Leaky path fit
 Lappe et al. (2007) developed a path integration model with leaky integration over the spatial motion extent to explain travel distance estimate and its increasing misestimation over long travel distances. 
 According to the leaky path integration model (Lappe et al., 2007), two parameters influence the instantaneous change of distance: the gain factor k and the leak factor α. The gain factor increments the integrated distance proportionally to the distance of motion while the leak rate reduces the perceived distance as the motion goes on. Because of the leak, longer distances lead to more decrease in the current distance estimate such that the extent of underestimation increases. 
+
+As our analysis strategy, we decided to fit our data non-linearly and then run traditional inferential analyses with the calculated parameters from our fit. From previous studies (Lappe et al., 2007) we know that there are biases in the path integration of traveled distance and that these biases do not behave linearly. Due to this evidence of non-linear biases, we decided to fit our data non-linearly according to their model. The gain factor k describes to what extent physical and psychological distances are congruent. Values around 1 indicate perfect congruency. Values above 1 indicate distance overestimation while values smaller than 1 denote distance underestimation. The leakage parameter alpha measures the extent to which the perceived traveled distance is reduced. As a consequence of alpha larger than 0, the perceived traveled distance while moving becomes disproportionately smaller. Please note that even if data could be fitted normally, the leaky path integration model will set alpha to 0, resulting in a linear fit. We consider this flexibility a plus to describe and analyze our data as accurately and validly as possible. 
  
 
 The python script now fits the model to the data and calculates α and k. Further, the script creates plots with raw data and their respective leaky model fit. The figure below shows some data as example:
 ![example plot - data described by leaky fit](https://user-images.githubusercontent.com/69513270/188611382-b3e1c758-b626-4919-a0b4-5524e1dc0dc0.jpg)
+
+
+## Descriptives analysis
+Descriptive analysis of the distance gauges includes descriptive values (mean, median and standard deviation), several data checks, and plots. 
+![natural locomotion mean sd distance estimation eine Geschwindigkeit](https://user-images.githubusercontent.com/69513270/195040117-e615ebdf-cb20-4ab1-ae5e-435731f48836.jpg)
+
+
+
+## Linear mixed modeling of the leaky path parameters
+Strategy: The inferential analyses we focussed on the leakage parameter alpha and gain factor k. The data structure is based on a within-subject design with repeated measurements and two categorical independent variables with several levels. As an appropriate procedure, we perform an analysis of variance by applying a mixed-modeling framework (LMM). LMM benefits from higher flexibility, accurateness, and powerfulness for repeated-measures data (Kristensen, 2004; Jaeger, 2008) than traditional variance analyses. 
+
+Procedure: We analyzed separately, whether the magnitude of k or alpha depends on the walker combinations and the ground types. We fitted LMM (estimated using restricted maximum likelihood criterion (REML) and nloptwrap optimizer) with random intercept and constant slope for participants. This model predicted k respectively alpha the interaction of ground types and walker combinations. 
+
+The R script also plots the magnitude of alpha and k. The figure below depicts participant-wise alpha (jitter) and the average alpha (colored) as example:
+![alpha jitter plot](https://user-images.githubusercontent.com/69513270/195040938-37b4d2b3-6923-432f-a964-f204b362ee8d.png)
+
+
+
+
