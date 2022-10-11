@@ -59,7 +59,7 @@ We simulate observers' forwarding self-motion towards a crowd of point-light wal
 We combine three walker conditions (approaching vs. leaving vs. static), two ground conditions (gravel vs. stripes) with six traveled distances (4.00 m, 5.66 m, 8.00 m, 11.31 m, 16.00 m, 22.63 m), and two different self-motion speeds (equally fast as the walkers vs. unequally fast as the walkers). This combination of variables results in 72 trials. We repeat the stimulus combinations five times giving 360 in total. 
 
 ### Distance estimation // Procedure
-Participants' task is to reproduce the traveled distance by placing a point-light walker on a blue line from a red starting line (at 2.624 m) as far as they went before ('adjust-to-target'-paradigm; Lappe & Frenz, 2009). Moving the walker in-depth immediately rescales it according to its position in depth. This rescaling should help participants receive a better depth impression, thus, increasing estimation accuracy. 
+Participants' task is to reproduce the traveled distance by placing a point-light walker on a blue line from a red starting line (at 2.624 m) as far as they went before ('adjust-to-target'-paradigm: Lappe et al. 2007; Lappe & Frenz, 2009). Moving the walker in-depth immediately rescales it according to its position in depth. This rescaling should help participants receive a better depth impression, thus, increasing estimation accuracy. 
 ![distance estimation with walker on the estimation line](https://user-images.githubusercontent.com/69513270/182351519-199879d5-9e5f-4dc4-bfdb-97191539c257.png)
 
 Depending on travel distance and velocity, a trial lasts between 5 and 28 seconds. To avoid fatigue effects we divide the experiment into four sessions on two days. So when entering the session number, make sure to choose a number between 1 and 4. Trials are blocked according to the ground type (gravel vs stripes). We assigned participants alternatingly to start their session with either the gravel or stripes ground type. 
@@ -67,9 +67,12 @@ Depending on travel distance and velocity, a trial lasts between 5 and 28 second
 
 
 # Analysis
-The analysis includes descriptive and statistical analysis in R, and computational modeling in Python.
+The analysis includes descriptive and inferential analysis in R, and computational modeling in Python.
 
 ## Leaky path fit
-According to the model (Lappe et al., 2007), two parameters influence the instantaneous change of distance: the leak factor α and the gain factor k. The leak rate descends, whereas the gain factor increases the integrated distance value over the length of motion. In the present way to ask participants to gauge their traveled distance ("adjust-to-target"), the gain factor k gradually increments the distance from the origin. The leakage increases proportionally to the current distance from the origin by the leak rate α. Hence, longer distances lead to more decrease in the current distance from the origin such that the extent of underestimation increases.
-The python script now fits the model to the data and calculates α and k. Further, the script creates plot with raw data and their respective leaky model fit. The figure below shows some data as example:
+Lappe et al. (2007) developed a path integration model with leaky integration over the spatial motion extent to explain travel distance estimate and its increasing misestimation over long travel distances. 
+According to the leaky path integration model (Lappe et al., 2007), two parameters influence the instantaneous change of distance: the gain factor k and the leak factor α. The gain factor increments the integrated distance proportionally to the distance of motion while the leak rate reduces the perceived distance as the motion goes on. Because of the leak, longer distances lead to more decrease in the current distance estimate such that the extent of underestimation increases. 
+ 
+
+The python script now fits the model to the data and calculates α and k. Further, the script creates plots with raw data and their respective leaky model fit. The figure below shows some data as example:
 ![example plot - data described by leaky fit](https://user-images.githubusercontent.com/69513270/188611382-b3e1c758-b626-4919-a0b4-5524e1dc0dc0.jpg)
