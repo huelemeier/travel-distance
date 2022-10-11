@@ -18,7 +18,7 @@ Download all the files and add them to your Matlab folder. Within your Matlab fo
 - sample_walker3: motion data for point_light walker with normal speed
 - sample_walker_0.8: motion data for point_light walker with slower speed
 - sample_walker_1.2: motion data for point_light walker with faster speed
-- stripes.rgb.tiff: ground type stripes
+- streifen.rgb.tiff: ground type stripes
 - gravel.rgb.tiff: ground type gravel
 - leaky fit.py: Python script to model the data according to the leaky path fit by Lappe et al. (2007)
 - descriptive analysis distance estimates.R: R script to run descriptive analysis of distance estimates and to create plots
