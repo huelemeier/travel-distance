@@ -22,6 +22,7 @@ import seaborn as sns
 
 import statsmodels.api as sm
 import statsmodels.formula.api as smf
+import itertools
 
 
 
