@@ -10,6 +10,8 @@ Created on 18.08.2022
 import numpy as np
 import matplotlib.pyplot as plt
 from matplotlib import rcParams
+import matplotlib.backends.backend_pdf
+
 rcParams['font.family'] = 'sans-serif'
 rcParams['font.sans-serif'] = ['Helvetica']
 # import scipy.optimize as opt# followed by opt.minimize
@@ -24,6 +26,7 @@ import statsmodels.api as sm
 import statsmodels.formula.api as smf
 import itertools
 
+import sys; sys.executable
 
 
 
