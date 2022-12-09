@@ -386,5 +386,86 @@ plt.show()
 del i_j, i_l, temp, tempdesc, x_x
 
           
+    
+    
+
+##-- Model per stimulus combination
+# leaky Model für die Variablenkombinationen walker combination und ground type:
+
+i_j = 0
+i_l = 0
+plt.clf()
+
+fig, ax = plt.subplots(2, 3, figsize = (14,6), sharex = True, sharey=True)
+plt.subplots_adjust(left=0.1, bottom=0.1, right=0.9, top=0.9, wspace=0.4, hspace=0.4)
+plt.style.use('ggplot')
+#pdf = matplotlib.backends.backend_pdf.PdfPages("leaky fit through mean data2.pdf")
+
+for  j in list(set(data["combination"])):  # combination
+    for l in list(set(data["ground"])):  # ground
+
+        temp = data.loc[(data["combination"] == j) & (data["ground"] == l)]
+        y = temp["estimateddistance"]
+        x = temp["traveldistance"]
+        
+        # mean descriptives:
+        tempdesc = desc.loc[(desc["combination"] == j) & (desc["ground"] == l)]
+        sdy = tempdesc["sdy"]
+        meany = tempdesc["meany"]
+        x_x = tempdesc["traveldistance"]
+         
+        
+        #- model fit
+        popt, pcov = curve_fit(leaky, x, y, bounds=[0, np.inf])
+       # print(j, l,  "aa = {}, kk = {}".format(popt[0], popt[1]))
+        perr = np.sqrt(np.diag(pcov)) # compute one standard deviation errors on the parameters perr[0] ist von alpha, perr[1] von k
+        print(j, l,  "au = {}, ku = {}".format(np.sqrt(perr[0]), np.sqrt(perr[1])))
+
+        #- Plotting:
+        a, k = popt
+    
+        x_line = np.arange(0, max(x)+1)
+        y_line = leaky(x_line, a, k) # calculate the output for the range
+        s_line = uncertainty(x_line, a, k, perr[0], perr[1])
+
+
+        #ax[i_l, i_j].scatter(x, y, 6, alpha = 0.5, color = '#2A64AE') # raw data
+        ax[i_l, i_j].errorbar(x_x, meany, yerr=sdy, fmt='o', color='#2A64AE', ecolor='#869ED0')#, elinewidth=3, capsize=0);
+        
+        #ax[i_l, i_j].plot(x_line, y_line-s_line, color = '#E38B90')
+        #ax[i_l, i_j].plot(x_line, y_line+s_line, color = '#E38B90')
+        ax[i_l, i_j].plot(x_line, y_line, color = '#D9345D')
+
+        
+        
+        plt.suptitle("average data described by leaky fit")
+        ax[i_l, i_j].text(1, 15, 'alpha = %.3f'%(popt[0]))
+        ax[i_l, i_j].text(10, 15, '± %.3f'%(np.sqrt(perr[0])))
+        ax[i_l, i_j].text(1, 13, 'k = %.3f'%(popt[1]))
+        ax[i_l, i_j].text(10, 13, '± %.3f'%(np.sqrt(perr[1])))
+
+
+
+        ax[i_l, i_j].set_title('condition {} '.format(j) + 'ground {} '.format(l), loc="left")
+        
+        ax[1,0].set_xlabel("traveled distance", loc="left")
+        ax[0,0].set_ylabel("estimated distance")
+        ax[i_l, i_j].set_xticks(list(set(x)))
+        plt.rcParams['axes.facecolor'] = '#F9F9F9'
+
+       # figs = list(map(plt.figure, plt.get_fignums()))
+        i_l += 1
+    i_j += 1
+    i_l=0
+
+
+    plt.tight_layout()
+#pdf.savefig(fig)
+   # plt.subplot_tool()
+
+plt.show()
+
+#pdf.close()       
+
           
           
