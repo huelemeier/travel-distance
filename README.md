@@ -55,9 +55,6 @@ To avoid collisions with static or approaching walkers, we place the walkers 1.5
 The experimental world spans over 60 m scene depths. We placed a visible ground at eye height (1.60 m). Its appearance could either be structured (gravel) or unstructured (stripes in the motion direction). The gravel ground provides independent optic flow, while the stripes ground neither conveys any structure nor optic flow. 
 <img width="664" alt="Bildschirmfoto 2022-08-02 um 12 32 11" src="https://user-images.githubusercontent.com/69513270/182355366-0e09f7b7-b11b-4c51-89cb-ccfa66a9b493.png">
 
-Take a look at the video to experience the scene with the stripes ground:
-https://user-images.githubusercontent.com/69513270/208483838-ad53d478-241a-479a-9a2e-c1a751a8ea8a.mp4
-
 
 
 ### Self-motion simulation
