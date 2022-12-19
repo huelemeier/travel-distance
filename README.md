@@ -5,6 +5,7 @@ The following video shows one trial as example:
 
 https://user-images.githubusercontent.com/69513270/182567281-a54efc79-a7d4-403b-8d10-4421c04e88fb.mp4
 
+
 ## Technical requirements and set-up
 These scripts are optimized for MatLab 2021b with Psychtoolbox (http://psychtoolbox.org/download.html) and OpenGL add-on libraries from the Psychtoolbox. So what needs to be installed on you computer are Matlab and Psychtoolbox. If you want to run the analyses for your data, please install R with RStudio and Python with Spyder.
 
@@ -53,6 +54,11 @@ To avoid collisions with static or approaching walkers, we place the walkers 1.5
 ### Experimental scene
 The experimental world spans over 60 m scene depths. We placed a visible ground at eye height (1.60 m). Its appearance could either be structured (gravel) or unstructured (stripes in the motion direction). The gravel ground provides independent optic flow, while the stripes ground neither conveys any structure nor optic flow. 
 <img width="664" alt="Bildschirmfoto 2022-08-02 um 12 32 11" src="https://user-images.githubusercontent.com/69513270/182355366-0e09f7b7-b11b-4c51-89cb-ccfa66a9b493.png">
+
+Take a look at the video to experience the scene with the stripes ground:
+https://user-images.githubusercontent.com/69513270/208483838-ad53d478-241a-479a-9a2e-c1a751a8ea8a.mp4
+
+
 
 ### Self-motion simulation
 We simulate observers' forwarding self-motion towards a crowd of point-light walkers. Travel distances are chosen by Lappe et al. (2007): 4.00 m, 5.66 m, 8.00 m, 11.31 m, 16.00 m, and 22.63 m. All distances are traveled at 0.013, equal to the average translation speed of the crowd. In addition, short distances (4.00 m, 5.66 m, 8.00 m) are simulated more slowly at 0.0104, which is half the crowd's average speed. For long distances (11.31 m, 16.00 m, 22.63 m), we choose a simulation speed of 0.0154, or 1.5 faster than the crowd. 
