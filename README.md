@@ -103,12 +103,13 @@ Descriptive analysis of the distance gauges includes descriptive values (mean, m
 
 
 ## Linear mixed modeling of the leaky path parameters
-Strategy: The inferential analyses we focussed on the leakage parameter alpha and gain factor k. The data structure is based on a within-subject design with repeated measurements and two categorical independent variables with several levels. As an appropriate procedure, we perform an analysis of variance by applying a mixed-modeling framework (LMM). LMM benefits from higher flexibility, accurateness, and powerfulness for repeated-measures data (Kristensen, 2004; Jaeger, 2008) than traditional variance analyses. 
+Strategy: The inferential analyses we focussed on the leakage parameter alpha and gain factor k. The data structure is based on a within-subject design with repeated measurements and two categorical independent variables with several levels. As an appropriate procedure, we perform an analysis of variance by applying a mixed-modeling framework (LMM). LMM benefits from higher flexibility, accurateness, and powerfulness for repeated-measures data (Kristensen & Hansen, 2004; Jaeger, 2008) than traditional variance analyses. 
 
 Procedure: We analyzed separately, whether the magnitude of k or alpha depends on the walker combinations and the ground types. We fitted LMM (estimated using restricted maximum likelihood criterion (REML) and nloptwrap optimizer) with random intercept and constant slope for participants. This model predicted k respectively alpha the interaction of ground types and walker combinations. 
 
-The R script also plots the magnitude of alpha and k. The figure below depicts participant-wise alpha (jitter) and the average alpha (colored) as example:
-![alpha jitter plot](https://user-images.githubusercontent.com/69513270/195040938-37b4d2b3-6923-432f-a964-f204b362ee8d.png)
+The R script also plots the magnitude of alpha and k. The figure below presents the modeled data from python (left) and the visualized inferential analysis of gain parameter and leak rate:
+<img width="1288" alt="Fit + model parameters" src="https://user-images.githubusercontent.com/69513270/216551651-f2dc0479-387b-45de-8096-f5778eb7a33f.png">
+
 
 
 
