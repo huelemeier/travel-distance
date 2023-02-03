@@ -85,6 +85,11 @@ The analysis includes descriptive and inferential analysis in R, and computation
 Lappe et al. (2007) developed a path integration model with leaky integration over the spatial motion extent to explain travel distance estimate and its increasing misestimation over long travel distances. 
 According to the leaky path integration model (Lappe et al., 2007), two parameters influence the instantaneous change of distance: the gain factor k and the leak factor α. The gain factor increments the integrated distance proportionally to the distance of motion while the leak rate reduces the perceived distance as the motion goes on. Because of the leak, longer distances lead to more decrease in the current distance estimate such that the extent of underestimation increases. 
 
+**Leaky integrator model describing the perceived distance p(x) by the gain factor k and alpha**
+```math
+p(x) = e^{-\alpha x+b}+ \frac{k}{\alpha}
+```
+
 As our analysis strategy, we decided to fit our data non-linearly and then run traditional inferential analyses with the calculated parameters from our fit. From previous studies (Lappe et al., 2007) we know that there are biases in the path integration of traveled distance and that these biases do not behave linearly. Due to this evidence of non-linear biases, we decided to fit our data non-linearly according to their model. The gain factor k describes to what extent physical and psychological distances are congruent. Values around 1 indicate perfect congruency. Values above 1 indicate distance overestimation while values smaller than 1 denote distance underestimation. The leakage parameter alpha measures the extent to which the perceived traveled distance is reduced. As a consequence of alpha larger than 0, the perceived traveled distance while moving becomes disproportionately smaller. Please note that even if data could be fitted normally, the leaky path integration model will set alpha to 0, resulting in a linear fit. We consider this flexibility a plus to describe and analyze our data as accurately and validly as possible. 
  
 
