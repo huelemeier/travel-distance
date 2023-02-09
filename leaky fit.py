@@ -51,8 +51,8 @@ data = dforiginal[dforiginal["estimateddistance"] > 0.9]
 
 #--- leaky Model with standard deviation
 # model defintion
-def leaky(x, aa, kk):
-    return kk/aa * (1 - np.exp(-aa*x))
+def leaky(x, aa, kk, b):
+    return kk/aa * (1 - np.exp(-aa*x+b))
 # propagation of uncertainty:
 def uncertainty(x, aa, kk, s_a, s_k): # Formel Simplification aus: https://en.wikipedia.org/wiki/Propagation_of_uncertainty 
     u_k =  1/aa * (1 - np.exp(-aa*x)) # Ableitung nach k
@@ -236,8 +236,8 @@ for i in list(set(data["id"])):  # id
 for j in list(set(data["combination"])): # combination
     for l in list(set(data["ground"])): # ground
    
-          def leaky(x, aa, kk):
-              return kk/aa * (1 - np.exp(-aa*x))
+          def leaky(x, aa, kk, b):
+              return kk/aa * (1 - np.exp(-aa*x + b))
           temp = data.loc[(data["combination"] == j) & (data["ground"] == l)]
           y = temp["estimateddistance"]
           x = temp["traveldistance"]
