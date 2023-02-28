@@ -159,7 +159,10 @@ highlightmean$k <- c(mean(subset(leaky,combination == 1 & ground == 1)$k),
                      mean(subset(leaky,combination == 3 & ground == 2)$k)) 
 
 
-# plot of the leakage rate alpha
+
+
+
+# jitter plot of the leakage rate alpha
 plot <- ggplot(leaky, aes(y = alpha, x = combination)) +
   geom_point(aes(shape = ground, group = ground, alpha = 0), color = "#E0E0E0", position = position_jitterdodge(dodge.width=0.8)) +
   geom_point(data=highlightmean, aes(x=combination, y=alpha, shape = factor(ground)), position = position_dodge(0.8), color=ifelse(highlightmean$alpha > 0.2,  "#D9345D",'#2A64AE'),
@@ -189,7 +192,7 @@ ggsave(plot, file=paste(results, "alpha jitter plot", ".png", sep=''), units = "
 
 
 
-# plot of the gain factor k
+# jitter plot of the gain factor k
 plot <- ggplot(leaky, aes(y = k, x = combination)) +
   geom_point(aes(shape = ground, group = ground, alpha = 0), color = "#E0E0E0", position = position_jitterdodge(dodge.width=0.8)) +
   geom_point(data=highlightmean, aes(x=combination, y=k, shape = factor(ground)), position = position_dodge(0.8), color=ifelse(highlightmean$k > 1.5,  "#D9345D",'#2A64AE'),
@@ -215,6 +218,88 @@ plot <- ggplot(leaky, aes(y = k, x = combination)) +
   scale_x_discrete(name="walker condition", breaks = c(1,2,3), labels=c("static", "approaching", "leaving")) +
   scale_y_continuous(name="gain factor k")
 ggsave(plot, file=paste(results, "k jitter plot", ".pdf", sep=''), units = "in", height = 3.9, width = 4.6)
+
+
+
+# posthoc analysis plot of the leackage rate alpha
+plot <- ggplot(subset(leaky, ground == 2), aes(y = alpha, x = (combinationplot))) +
+  # Hintergrund gestrichelte Linien
+  geom_hline(yintercept = 0.3, size = 0.09, color = "#161412", linetype = "dotted") + 
+  geom_hline(yintercept = 0.2, size = 0.09, color = "#161412", linetype = "dotted") + 
+  geom_hline(yintercept = 0.1, size = 0.09, color = "#161412", linetype = "dotted") + 
+  geom_hline(yintercept = 0, size = 0.09, color = "#161412", linetype = "dotted") + 
+  
+  # load in data:
+  geom_point(data=subset(highlightmean, ground == 2), aes(x=(combinationplot), y=alpha, color=factor(combinationplot)), position = position_dodge(0.8), size=4.5) +
+  geom_pointrange(data=subset(highlightmean, ground == 2), aes(y=(alpha), ymin = alpha-alphasd, ymax=alpha+alphasd, x=(combinationplot), group = combinationplot, color=factor(combinationplot)), position = position_dodge(.9), linewidth=0.7) +
+  
+  # annotations
+  geom_text(data=highlightmean %>% filter(combinationplot == 2 & ground == 2), x=1.5, y=0.33, label="*", size=4.3, color="#161412", check_overlap = TRUE, hjust = 0) + 
+  geom_segment(data=highlightmean %>% filter(combinationplot == 2 & ground == 2), aes(y=0.31, x = 1.1, yend = 0.31, xend = 1.9), size = 0.2, color="#161412") +
+
+  # general layout
+  theme_classic2() + 
+  theme(strip.text.x = element_text(size=8.5),
+        strip.background = element_rect(color = "white"),
+        panel.background = element_rect(fill = "white"), ##F9F9F9
+        text = element_text(size=8.5,  family="Helvetica"), 
+        element_line(size=0.1),
+        legend.position='none',
+        plot.title.position = "plot",
+        legend.justification = "left",
+        axis.title.x = element_text(hjust = 0),
+        axis.title.y = element_text(hjust = 1),
+        plot.title = element_text(size=10, family="Helvetica", hjust = 0, face = "bold"),
+        axis.text = element_text(size=8.5), 
+        legend.key.size = unit(2, "mm"),
+        panel.spacing = unit(0.5, "cm"),
+        axis.text.x = element_text(angle = 0, hjust=0.5)) +
+  scale_color_manual(values = colourscheme) + 
+  scale_x_discrete(name="", breaks = c(1, 2, 3), labels=c("static", "approaching", "leading")) +
+  scale_y_continuous(name="Leakage rate alpha", limits = c(-0.01, 0.35))
+ggsave(plot, file=paste(results, "alpha post hoc", ".pdf", sep=''), units = "in", height = 3.17, width = 2.5)
+
+
+
+# posthoc analysis plot of the gain factor k
+plot <- ggplot(subset(leaky, ground == 2), aes(y = k, x = combinationplot)) +
+  # Hintergrund gestrichelte Linien
+  geom_hline(yintercept = 1, size = 0.09, color = "#161412", linetype = "dotted") + 
+  geom_hline(yintercept = 1.25, size = 0.09, color = "#161412", linetype = "dotted") + 
+  geom_hline(yintercept = 1.5, size = 0.09, color = "#161412", linetype = "dotted") + 
+  geom_hline(yintercept = 1.75, size = 0.09, color = "#161412", linetype = "dotted") + 
+  
+  # load in data
+  geom_point(data=subset(highlightmean, ground == 2), aes(x=combinationplot, y=k, color=factor(combinationplot)), position = position_dodge(0.8), size=4.5) +
+  geom_pointrange(data = subset(highlightmean, ground == 2), aes(y=(k), ymin = k-ksd, ymax=k+ksd, x=combinationplot, group = combinationplot, color=factor(combinationplot)), position = position_dodge(.9), linewidth=0.7) +
+  
+  # annotations
+  geom_text(data=highlightmean %>% filter(combinationplot == 2 & ground == 1), x=1.45, y=1.72, label="*", size=4.3, color="#161412", check_overlap = TRUE, hjust = 0) + 
+  geom_segment(data=highlightmean %>% filter(combinationplot == 2 & ground == 1), aes(y=1.67, x = 1.1, yend = 1.67, xend = 1.9), size = 0.2, color="#161412") +
+  geom_text(data=highlightmean %>% filter(combinationplot == 2 & ground == 2), x=2.5, y=1.72, label="*", size=4.3, color="#161412", check_overlap = TRUE, hjust = 0) + 
+  geom_segment(data=highlightmean %>% filter(combinationplot == 2 & ground == 2), aes(y=1.67, x = 2.1, yend = 1.67, xend = 2.9), size = 0.2, color="#161412") +
+  
+  theme_classic2() + 
+  theme(strip.text.x = element_text(size=8.5),
+        strip.background = element_rect(color = "white"),
+        panel.background = element_rect(fill = "white"), # #F9F9F9
+        text = element_text(size=8.5,  family="Helvetica"), 
+        element_line(size=0.1),
+        legend.position='none',
+        plot.title.position = "plot",
+        legend.justification = "left",
+        axis.title.x = element_text(hjust = 0),
+        axis.title.y = element_text(hjust = 1),
+        plot.title = element_text(size=10, family="Helvetica", hjust = 0, face = "bold"),
+        axis.text = element_text(size=8.5), 
+        legend.key.size = unit(2, "mm"),
+        panel.spacing = unit(0.5, "cm"),
+        axis.text.x = element_text(angle = 0, hjust=0.5)) +
+  scale_color_manual(values = colourscheme) + 
+  scale_x_discrete(name="", breaks = c(1, 2, 3), labels=c("static", "approaching", "leading")) +
+  scale_y_continuous(name="Gain factor k", limits = c(0.87, 1.86))
+ggsave(plot, file=paste(results, "k post hoc", ".pdf", sep=''), units = "in", height = 3.17, width = 2.5)
+
 
 
 
