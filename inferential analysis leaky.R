@@ -34,7 +34,7 @@ results <- "/Users/huelemeier/Desktop/results_distance/"
 # The current section loads and preprocesses the data set for the descriptive and inferential analysis later on.  
 # Please consider to write down your path where you store the data!
 leaky <- read_delim("~/Desktop/leaky.txt", delim = "\t", escape_double = FALSE, col_names = T, trim_ws = TRUE)
-colnames(leaky) = c('id', 'combination', 'ground', 'alpha', 'k')
+colnames(leaky) = c('id', 'combination', 'ground', 'estimateddistance', 'alpha', 'k')
 leaky$combination <- as.factor(leaky$combination)
 leaky$ground <- as.factor(leaky$ground)
 
